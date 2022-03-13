@@ -1,0 +1,95 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "MessagingWebAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/messaging/message": {
+      "post": {
+        "tags": [
+          "MessagingWebAPI"
+        ],
+        "operationId": "RequestMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Message"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/AddressKind"
+          },
+          "addressLine": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressKind": {
+        "enum": [
+          0
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Content": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "$ref": "#/components/schemas/MimeType"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "to": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/Content"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MimeType": {
+        "enum": [
+          0
+        ],
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}
