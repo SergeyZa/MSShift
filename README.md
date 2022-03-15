@@ -24,3 +24,5 @@ In order to run:
 1. start MessagingProcessor
 1. start MessagingWebAPI
 1. use Swagger UI and/or launch MessagingTest
+
+![Sequence diagram](./sequence%20diagram.svg "Sequence diagram")
