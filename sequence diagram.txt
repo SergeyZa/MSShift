@@ -1,0 +1,14 @@
+title Messaging
+
+Client->API:submit message
+participantgroup MessagingProcessor
+API->messages queue: queue message
+Client<-API:response
+activate messages queue
+messages queue->messages_retry queue: queue message if qualified for retry
+messages queue->message_error queue:if not qualified to retry
+activate messages_retry queue
+messages_retry queue->messages queue: retry message
+end 
+
+
